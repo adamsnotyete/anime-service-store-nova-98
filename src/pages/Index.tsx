@@ -35,9 +35,8 @@ const Index = () => {
           {isLoggedIn ? (
             <>
               <div className="mb-10">
-                <h2 className="text-4xl font-bold mb-2 gradient-text">مرحبًا بك في متجر الأنمي</h2>
+                <h2 className="text-4xl font-bold mb-2 gradient-text">مرحبًا بك في متجر nova</h2>
                 <p className="text-xl text-gray-300 max-w-3xl">
-                  اكتشف خدماتنا المميزة واختر ما يناسبك من العروض الخاصة بالألقاب والمميزات
                 </p>
               </div>
               <ServicesGrid />
@@ -52,7 +51,7 @@ const Index = () => {
       
       <footer className="relative z-10 py-4 text-center text-gray-400 bg-black bg-opacity-50">
         <div className="container mx-auto">
-          <p>&copy; 2025 متجر الأنمي - جميع الحقوق محفوظة</p>
+          <p>&copy; 2025 متجر adam - جميع الحقوق محفوظة</p>
         </div>
       </footer>
     </div>
