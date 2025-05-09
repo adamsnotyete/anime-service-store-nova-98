@@ -1,12 +1,45 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from "react";
+import { useAuth } from "@/context/AuthContext";
+import LoginForm from "@/components/LoginForm";
+import Header from "@/components/Header";
+import ServicesGrid from "@/components/ServicesGrid";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const Index = () => {
+  const { isLoggedIn } = useAuth();
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen relative z-10 flex flex-col" dir="rtl">
+      <AnimatedBackground />
+      
+      <div className="container mx-auto px-4 py-8 relative z-10 flex-grow">
+        <Header />
+        
+        <main className="max-w-7xl mx-auto">
+          {isLoggedIn ? (
+            <>
+              <div className="mb-10">
+                <h2 className="text-4xl font-bold mb-2 gradient-text">مرحبًا بك في متجر الأنمي</h2>
+                <p className="text-xl text-gray-300 max-w-3xl">
+                  اكتشف خدماتنا المميزة واختر ما يناسبك من العروض الخاصة بالألقاب والمميزات
+                </p>
+              </div>
+              <ServicesGrid />
+            </>
+          ) : (
+            <div className="flex items-center justify-center min-h-[70vh]">
+              <LoginForm />
+            </div>
+          )}
+        </main>
       </div>
+      
+      <footer className="relative z-10 py-4 text-center text-gray-400 bg-black bg-opacity-50">
+        <div className="container mx-auto">
+          <p>&copy; 2025 متجر الأنمي - جميع الحقوق محفوظة</p>
+        </div>
+      </footer>
     </div>
   );
 };

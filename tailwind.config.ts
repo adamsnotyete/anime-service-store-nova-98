@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				anime: {
+					'dark-purple': '#1A1F2C',
+					'purple': '#9b87f5',
+					'bright-purple': '#8B5CF6',
+					'charcoal': '#403E43',
+					'dark-charcoal': '#221F26'
 				}
 			},
 			borderRadius: {
@@ -84,11 +92,52 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'pulse-glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 5px rgba(155, 135, 245, 0.8), 0 0 10px rgba(155, 135, 245, 0.5)'
+					},
+					'50%': {
+						boxShadow: '0 0 15px rgba(155, 135, 245, 1), 0 0 20px rgba(155, 135, 245, 0.8)'
+					}
+				},
+				'shimmer': {
+					'0%': { backgroundPosition: '-200% 0' },
+					'100%': { backgroundPosition: '200% 0' }
+				},
+				'rotate-3d': {
+					'0%, 100%': { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' },
+					'25%': { transform: 'perspective(1000px) rotateX(5deg) rotateY(5deg)' },
+					'50%': { transform: 'perspective(1000px) rotateX(0deg) rotateY(10deg)' },
+					'75%': { transform: 'perspective(1000px) rotateX(-5deg) rotateY(5deg)' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'scale-in': {
+					'0%': { opacity: '0', transform: 'scale(0.95)' },
+					'100%': { opacity: '1', transform: 'scale(1)' }
+				},
+				'slide-in-right': {
+					'0%': { transform: 'translateX(100%)' },
+					'100%': { transform: 'translateX(0)' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'pulse-glow': 'pulse-glow 2s infinite',
+				'shimmer': 'shimmer 2s infinite linear',
+				'rotate-3d': 'rotate-3d 7s ease-in-out infinite',
+				'fade-in': 'fade-in 0.5s ease-out',
+				'scale-in': 'scale-in 0.3s ease-out',
+				'slide-in-right': 'slide-in-right 0.5s ease-out',
 			}
 		}
 	},
