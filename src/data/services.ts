@@ -47,14 +47,14 @@ export const services: ServiceCard[] = [
   },
   {
     id: 7,
-    name: "دبل بيبي",
+    name: "دبل بيلي",
     price: "200k",
     duration: "يوم",
     image: "https://wallpapercave.com/wp/wp4709480.jpg"
   },
   {
     id: 8,
-    name: "إهداء دبل بيبي",
+    name: "إهداء دبل بيلي",
     price: "200k",
     duration: "يوم",
     image: "https://wallpapercave.com/wp/wp8962892.jpg"
