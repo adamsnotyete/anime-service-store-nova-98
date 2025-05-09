@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 const ServicesGrid: React.FC = () => {
   const [selectedService, setSelectedService] = useState<ServiceCardType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(0);
 
   const handleCardClick = (service: ServiceCardType) => {
     setSelectedService(service);
@@ -20,6 +21,10 @@ const ServicesGrid: React.FC = () => {
     setTimeout(() => setSelectedService(null), 300);
   };
 
+  const handleImageLoaded = () => {
+    setImagesLoaded(prev => prev + 1);
+  };
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -29,6 +34,15 @@ const ServicesGrid: React.FC = () => {
       }
     }
   };
+
+  React.useEffect(() => {
+    // Preload images
+    services.forEach(service => {
+      const img = new Image();
+      img.src = service.image;
+      img.onload = handleImageLoaded;
+    });
+  }, []);
 
   return (
     <>

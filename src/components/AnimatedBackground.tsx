@@ -10,11 +10,13 @@ const AnimatedBackground: React.FC = () => {
         loop
         muted
         playsInline
+        preload="auto"
       >
         <source
           src="https://cdn.lovable.dev/animations/anime-night-city.mp4"
           type="video/mp4"
         />
+        Your browser does not support the video tag.
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-anime-dark-purple/80 to-black opacity-80"></div>
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cartographer.png')] opacity-30"></div>
