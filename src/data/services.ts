@@ -8,91 +8,91 @@ export const services: ServiceCard[] = [
     name: "تغيير لقب",
     price: "500k",
     duration: "دائم",
-    image: "https://i.imgur.com/wT4Vmnz.jpg" // One Piece
+    image: "https://wallpapercave.com/wp/wp6367626.jpg"
   },
   {
     id: 2,
     name: "تبديل لقب",
     price: "350k",
     duration: "دائم",
-    image: "https://i.imgur.com/dvQIrPZ.jpg" // Naruto
+    image: "https://wallpapercave.com/wp/wp9268338.jpg"
   },
   {
     id: 3,
     name: "حجز لقب",
     price: "400k",
     duration: "أسبوع",
-    image: "https://i.imgur.com/0Fr2A1k.jpg" // Attack on Titan
+    image: "https://wallpapercave.com/wp/wp11230952.jpg"
   },
   {
     id: 4,
     name: "تغيير لقب مؤقت",
     price: "250k",
     duration: "يوم",
-    image: "https://i.imgur.com/y3wGgGU.jpg" // My Hero Academia
+    image: "https://wallpapercave.com/wp/wp8349598.jpg"
   },
   {
     id: 5,
     name: "سرقة لقب",
     price: "1m",
     duration: "يوم",
-    image: "https://i.imgur.com/EgOWnWT.jpg" // Demon Slayer
+    image: "https://wallpapercave.com/wp/wp4771870.jpg"
   },
   {
     id: 6,
     name: "تغيير لقب خارج الانمي",
     price: "5m",
     duration: "يوم",
-    image: "https://i.imgur.com/Jh5VlVj.jpg" // Jujutsu Kaisen
+    image: "https://wallpapercave.com/wp/wp9268321.jpg"
   },
   {
     id: 7,
     name: "دبل بيبي",
     price: "200k",
     duration: "يوم",
-    image: "https://i.imgur.com/HwOZYNi.jpg" // Dragon Ball
+    image: "https://wallpapercave.com/wp/wp4709480.jpg"
   },
   {
     id: 8,
     name: "إهداء دبل بيبي",
     price: "200k",
     duration: "يوم",
-    image: "https://i.imgur.com/vP3xPzC.jpg" // Hunter x Hunter
+    image: "https://wallpapercave.com/wp/wp8962892.jpg"
   },
   {
     id: 9,
     name: "حذف إنذار",
     price: "300k",
     duration: "إنذار واحد",
-    image: "https://i.imgur.com/JWe8CDV.jpg" // Death Note
+    image: "https://wallpapercave.com/wp/wp8907069.jpg"
   },
   {
     id: 10,
     name: "إلغاء طرد",
     price: "1m",
     duration: "يوم",
-    image: "https://i.imgur.com/KRezDAV.jpg" // Fullmetal Alchemist
+    image: "https://wallpapercave.com/wp/wp11473361.jpg"
   },
   {
     id: 11,
     name: "حماية من طرد",
     price: "400k",
     duration: "يوم",
-    image: "https://i.imgur.com/vXBvGGp.jpg" // Tokyo Ghoul
+    image: "https://wallpapercave.com/wp/wp8954342.jpg"
   },
   {
     id: 12,
     name: "تغيير لقب عضو",
     price: "200k",
     duration: "يوم",
-    image: "https://i.imgur.com/vNOMqrI.jpg" // Your Name
+    image: "https://wallpapercave.com/wp/wp8560297.jpg"
   },
   {
     id: 13,
     name: "إضافة إنذار",
     price: "300k",
     duration: "إنذار واحد",
-    image: "https://i.imgur.com/3MOnhAm.jpg" // Violet Evergarden
+    image: "https://wallpapercave.com/wp/wp9268399.jpg"
   }
 ];
 

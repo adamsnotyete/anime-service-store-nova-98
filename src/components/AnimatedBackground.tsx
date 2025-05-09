@@ -12,8 +12,12 @@ const AnimatedBackground: React.FC = () => {
         playsInline
       >
         <source
-          src="https://cdn.pixabay.com/vimeo/766941759/anime-142778.mp4?width=1280&hash=e42f48687735c683878fee9d0e6cb7c577bcfd18"
+          src="https://assets.codepen.io/3364143/7btrrd.mp4"
           type="video/mp4"
+        />
+        <source
+          src="https://assets.codepen.io/3364143/7btrrd.webm"
+          type="video/webm"
         />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-anime-dark-purple/80 to-black opacity-90"></div>
