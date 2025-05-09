@@ -1,17 +1,32 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import LoginForm from "@/components/LoginForm";
 import Header from "@/components/Header";
 import ServicesGrid from "@/components/ServicesGrid";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import AnimatedBanner from "@/components/AnimatedBanner";
 
 const Index = () => {
   const { isLoggedIn } = useAuth();
+  const [showBanner, setShowBanner] = useState(true);
+
+  // Handle scroll effect for banner
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setShowBanner(scrollPosition < 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen relative z-10 flex flex-col" dir="rtl">
       <AnimatedBackground />
+      
+      {isLoggedIn && showBanner && <AnimatedBanner />}
       
       <div className="container mx-auto px-4 py-8 relative z-10 flex-grow">
         <Header />

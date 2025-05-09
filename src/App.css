@@ -1,4 +1,5 @@
 
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -41,3 +42,48 @@
 .read-the-docs {
   color: #888;
 }
+
+/* 3D animation effects */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px -10px rgba(155, 135, 245, 0.8);
+  }
+  to {
+    box-shadow: 0 0 20px 10px rgba(155, 135, 245, 0.6);
+  }
+}
+
+.animate-rotate-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.animate-rotate-3d:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+}
+
+.full-bleed {
+  box-shadow: 0 0 0 100vmax #171717;
+  clip-path: inset(0 -100vmax);
+}
+
