@@ -12,16 +12,12 @@ const AnimatedBackground: React.FC = () => {
         playsInline
       >
         <source
-          src="https://assets.codepen.io/3364143/7btrrd.mp4"
+          src="https://cdn.lovable.dev/animations/anime-night-city.mp4"
           type="video/mp4"
         />
-        <source
-          src="https://assets.codepen.io/3364143/7btrrd.webm"
-          type="video/webm"
-        />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-anime-dark-purple/80 to-black opacity-90"></div>
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cartographer.png')] opacity-20"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-anime-dark-purple/80 to-black opacity-80"></div>
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cartographer.png')] opacity-30"></div>
     </div>
   );
 };
