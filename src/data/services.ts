@@ -174,14 +174,7 @@ export const serviceFormFields: Record<number, FormField[]> = {
     }
   ],
   9: [], // No additional fields for warning removal
-  10: [
-    {
-      id: "banReason",
-      label: "سبب الطرد الأصلي",
-      type: "text",
-      required: true
-    }
-  ],
+  10: [], // No additional fields for warning removal
   11: [], // No additional fields for ban protection
   12: [
     {
@@ -206,7 +199,7 @@ export const serviceFormFields: Record<number, FormField[]> = {
     },
     {
       id: "warningReason",
-      label: "سبب الإنذار",
+      label: "عدد الانذارات ",
       type: "text",
       required: true
     }
