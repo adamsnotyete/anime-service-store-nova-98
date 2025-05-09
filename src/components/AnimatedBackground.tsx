@@ -12,12 +12,12 @@ const AnimatedBackground: React.FC = () => {
         playsInline
       >
         <source
-          src="https://mazwai.com/videvo_files/video/free/2019-01/small_watermarked/190111_13_25-1_preview.webm"
-          type="video/webm"
+          src="https://assets.codepen.io/3364143/7btrrd.mp4"
+          type="video/mp4"
         />
         <source
-          src="https://mazwai.com/videvo_files/video/free/2019-01/small_watermarked/190111_13_25-1_preview.mp4"
-          type="video/mp4"
+          src="https://assets.codepen.io/3364143/7btrrd.webm"
+          type="video/webm"
         />
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-anime-dark-purple/80 to-black opacity-90"></div>
