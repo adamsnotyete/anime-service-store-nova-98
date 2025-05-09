@@ -55,7 +55,7 @@ const LoginForm = () => {
             onChange={handleChange}
             required
             className="w-full bg-opacity-20 bg-black p-3 rounded-lg border border-purple-400 border-opacity-30 focus:border-purple-500 focus:ring-2 focus:ring-purple-500 text-right"
-            placeholder=":  Discord/Telegram"
+            placeholder=":whatssap"
           />
         </div>
         <div className="space-y-2">
