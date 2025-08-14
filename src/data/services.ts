@@ -11,35 +11,35 @@ export const personalServices: ServiceCard[] = [
     name: "تغيير لقب",
     price: "500k",
     duration: "دائم",
-    image: "https://cdn.lovable.dev/anime/anime-naruto-kakashi.jpg"
+    image: "https://wallpapercave.com/uwp/uwp4279441.png"
   },
   {
     id: 2,
     name: "تبديل لقب",
     price: "350k",
     duration: "دائم",
-    image: "https://cdn.lovable.dev/anime/anime-demon-slayer.jpg"
+    image: "https://wallpapercave.com/uwp/uwp4498654.jpeg"
   },
   {
     id: 3,
     name: "حجز لقب",
     price: "400k",
     duration: "أسبوع",
-    image: "https://cdn.lovable.dev/anime/anime-one-piece-luffy.jpg"
+    image: "https://wallpapercave.com/uwp/uwp4189557.png"
   },
   {
     id: 4,
     name: "تغيير لقب مؤقت",
     price: "250k",
     duration: "يوم",
-    image: "https://cdn.lovable.dev/anime/anime-attack-titan.jpg"
+    image: "https://wallpapercave.com/uwp/uwp4485208.png"
   },
   {
     id: 5,
     name: "سرقة لقب",
     price: "1m",
     duration: "يوم",
-    image: "https://cdn.lovable.dev/anime/anime-jujutsu-kaisen.jpg"
+    image: "https://wallpapercave.com/wp/wp13347171.jpg"
   },
   {
     id: 6,
@@ -53,49 +53,49 @@ export const personalServices: ServiceCard[] = [
     name: "دبل بيلي",
     price: "200k",
     duration: "يوم",
-    image: "https://cdn.lovable.dev/anime/anime-hunter-x-hunter.jpg"
+    image: "https://wallpapercave.com/uwp/uwp4830721.jpeg"
   },
   {
     id: 8,
     name: "إهداء دبل بيلي",
     price: "200k",
     duration: "يوم",
-    image: "https://cdn.lovable.dev/anime/anime-fullmetal-alchemist.jpg"
+    image: "https://wallpapercave.com/wp/wp15375726.png"
   },
   {
     id: 9,
     name: "حذف إنذار",
     price: "300k",
     duration: "إنذار واحد",
-    image: "https://cdn.lovable.dev/anime/anime-my-hero-academia.jpg"
+    image: "https://wallpapercave.com/wp/wp15038804.webp"
   },
   {
     id: 10,
     name: "إلغاء طرد",
     price: "1m",
     duration: "يوم",
-    image: "https://cdn.lovable.dev/anime/anime-death-note.jpg"
+    image: "https://wallpapercave.com/wp/wp15038779.webp"
   },
   {
     id: 11,
     name: "حماية من طرد",
     price: "400k",
     duration: "يوم",
-    image: "https://cdn.lovable.dev/anime/anime-dragon-ball.jpg"
+    image: "https://wallpapercave.com/wp/wp2763333.jpg"
   },
   {
     id: 12,
     name: "تغيير لقب عضو",
     price: "200k",
     duration: "يوم",
-    image: "https://cdn.lovable.dev/anime/anime-sword-art-online.jpg"
+    image: "https://wallpapercave.com/wp/wp4947925.jpg"
   },
   {
     id: 13,
     name: "إضافة إنذار",
     price: "300k",
     duration: "إنذار واحد",
-    image: "https://cdn.lovable.dev/anime/anime-bleach.jpg"
+    image: "https://wallpapercave.com/wp/wp4445440.png"
   }
 ];
 
