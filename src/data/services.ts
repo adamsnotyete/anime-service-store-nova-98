@@ -46,7 +46,7 @@ export const personalServices: ServiceCard[] = [
     name: "تغيير لقب خارج الانمي",
     price: "5m",
     duration: "يوم",
-    image: "https://cdn.lovable.dev/anime/anime-tokyo-ghoul.jpg"
+    image: "https://wallpapercave.com/wp/wp12978729.jpg"
   },
   {
     id: 7,
