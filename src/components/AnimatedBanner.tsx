@@ -49,59 +49,89 @@ const AnimatedBanner: React.FC = () => {
     >
       <div 
         ref={bannerRef}
-        className="w-full h-80 bg-gradient-to-br from-purple-900/80 via-blue-900/70 to-pink-900/80 backdrop-blur-xl rounded-3xl overflow-hidden relative border border-purple-500/30 shadow-2xl shadow-purple-500/20"
+        className="w-full h-96 relative overflow-hidden rounded-3xl border border-purple-400/20 shadow-2xl"
         style={{ transformStyle: 'preserve-3d' }}
       >
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-10 animate-pulse"></div>
+        {/* Animated mesh gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900 via-purple-900 to-pink-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-bl from-cyan-900/30 via-transparent to-orange-900/30"></div>
         
-        {/* Glowing orbs */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500/20 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-pink-500/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 right-1/3 w-20 h-20 bg-blue-500/20 rounded-full blur-xl animate-pulse delay-2000"></div>
+        {/* Animated geometric shapes */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-pink-500/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-full blur-2xl animate-pulse delay-2000"></div>
+        </div>
         
-        <div className="relative z-10 h-full flex flex-col items-center justify-center px-8">
+        {/* Hexagonal pattern overlay */}
+        <div className="absolute inset-0 opacity-10">
+          <svg className="w-full h-full" viewBox="0 0 100 100">
+            <defs>
+              <pattern id="hexagons" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <polygon points="10,2 18,7 18,17 10,22 2,17 2,7" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hexagons)" className="text-purple-300"/>
+          </svg>
+        </div>
+        
+        {/* Main content area */}
+        <div className="relative z-10 h-full flex items-center justify-between px-12">
+          {/* Left side - Main title */}
           <motion.div
-            initial={{ scale: 0.5, rotate: -10 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="mb-6"
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex-1"
           >
-            <h1 className="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-purple-500 tracking-wider drop-shadow-2xl">
-              𝑲𝑶𝑹𝑨𝒀 🌑
+            <div className="mb-4">
+              <span className="text-purple-300 text-sm font-medium tracking-wider uppercase">Welcome to</span>
+            </div>
+            <h1 className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-400 to-pink-400 mb-4 leading-none">
+              𝑲𝑶𝑹𝑨𝒀
             </h1>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-4xl">🌑</span>
+              <div className="h-0.5 flex-1 bg-gradient-to-r from-purple-400 to-transparent"></div>
+            </div>
+            <p className="text-purple-200 text-lg font-medium">
+              أفضل متجر للخدمات الأنمي
+            </p>
           </motion.div>
           
-          <motion.div 
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: "300px", opacity: 1 }}
-            transition={{ duration: 1.5, delay: 0.8 }}
-            className="h-1.5 bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 rounded-full shadow-lg shadow-purple-500/50 mb-6"
-          />
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="text-xl text-purple-100 font-medium tracking-wide"
-          >
-            أفضل متجر للخدمات الأنمي
-          </motion.p>
-          
+          {/* Right side - Decorative elements */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
-            className="mt-4 px-6 py-2 bg-purple-500/20 rounded-full border border-purple-400/30 backdrop-blur-sm"
+            initial={{ x: 100, opacity: 0, scale: 0.8 }}
+            animate={{ x: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="flex-1 flex justify-end items-center"
           >
-            <span className="text-purple-200 text-sm font-medium">✨ مرحباً بكم في عالم الأنمي ✨</span>
+            <div className="relative">
+              {/* Large decorative circle */}
+              <div className="w-64 h-64 rounded-full border-2 border-purple-400/30 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm flex items-center justify-center">
+                <div className="w-48 h-48 rounded-full border border-purple-300/20 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 backdrop-blur-sm flex items-center justify-center">
+                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-400/20 backdrop-blur-sm flex items-center justify-center">
+                    <span className="text-6xl animate-pulse">⭐</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating particles around the circle */}
+              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-purple-400/40 animate-bounce"></div>
+              <div className="absolute -bottom-4 -right-4 w-6 h-6 rounded-full bg-pink-400/40 animate-bounce delay-500"></div>
+              <div className="absolute top-1/2 -right-8 w-4 h-4 rounded-full bg-cyan-400/40 animate-bounce delay-1000"></div>
+              <div className="absolute -top-8 right-1/3 w-3 h-3 rounded-full bg-purple-300/40 animate-bounce delay-1500"></div>
+            </div>
           </motion.div>
         </div>
         
-        {/* Stable decorative elements */}
-        <div className="absolute top-8 left-8 w-16 h-16 rounded-full bg-gradient-to-br from-purple-400/30 to-pink-500/30 backdrop-blur-sm border border-purple-300/20"></div>
-        <div className="absolute bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-500/30 backdrop-blur-sm border border-blue-300/20"></div>
-        <div className="absolute top-1/2 left-8 w-8 h-8 rounded-full bg-gradient-to-br from-pink-400/30 to-purple-500/30 backdrop-blur-sm border border-pink-300/20"></div>
+        {/* Bottom accent line */}
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 2, delay: 1 }}
+          className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500"
+        />
       </div>
     </motion.div>
   );
