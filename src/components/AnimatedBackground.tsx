@@ -18,8 +18,18 @@ const AnimatedBackground: React.FC = () => {
         />
         Your browser does not support the video tag.
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-anime-dark-purple/80 to-black opacity-80"></div>
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cartographer.png')] opacity-30"></div>
+      {/* Anime wallpaper overlay */}
+      <div className="absolute inset-0 bg-[url('https://wallpaperaccess.com/full/1357772.jpg')] bg-cover bg-center opacity-20"></div>
+      
+      {/* Gradient overlays for better readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/60 via-black/70 to-black/90"></div>
+      <div className="absolute inset-0 anime-bg-overlay"></div>
+      
+      {/* Floating particles */}
+      <div className="absolute inset-0 floating-particles"></div>
+      
+      {/* Subtle texture */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cartographer.png')] opacity-20"></div>
     </div>
   );
 };

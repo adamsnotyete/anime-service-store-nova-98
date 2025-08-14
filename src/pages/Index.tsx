@@ -6,10 +6,12 @@ import Header from "@/components/Header";
 import ServicesGrid from "@/components/ServicesGrid";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import AnimatedBanner from "@/components/AnimatedBanner";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const { isLoggedIn } = useAuth();
   const [showBanner, setShowBanner] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<'personal' | 'guild'>('personal');
 
   // Handle scroll effect for banner
   useEffect(() => {
@@ -39,7 +41,28 @@ const Index = () => {
                 <p className="text-xl text-gray-300 max-w-3xl">
                 </p>
               </div>
-              <ServicesGrid />
+              
+              {/* Category Buttons */}
+              <div className="flex justify-center gap-6 mb-10">
+                <Button
+                  onClick={() => setActiveCategory('personal')}
+                  className={`px-10 py-4 rounded-xl text-xl font-bold transition-all duration-300 transform ${
+                    activeCategory === 'personal' ? 'category-btn-active' : 'category-btn-inactive'
+                  }`}
+                >
+                  الجزء الشخصي
+                </Button>
+                <Button
+                  onClick={() => setActiveCategory('guild')}
+                  className={`px-10 py-4 rounded-xl text-xl font-bold transition-all duration-300 transform ${
+                    activeCategory === 'guild' ? 'category-btn-active' : 'category-btn-inactive'
+                  }`}
+                >
+                  جزء النقابات
+                </Button>
+              </div>
+              
+              <ServicesGrid category={activeCategory} />
             </>
           ) : (
             <div className="flex items-center justify-center min-h-[70vh]">

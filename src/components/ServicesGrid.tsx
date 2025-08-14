@@ -1,12 +1,16 @@
 
 import React, { useState } from "react";
-import { services } from "@/data/services";
+import { personalServices, guildServices } from "@/data/services";
 import ServiceCard from "@/components/ServiceCard";
 import ServiceModal from "@/components/ServiceModal";
 import { ServiceCard as ServiceCardType } from "@/types";
 import { motion } from "framer-motion";
 
-const ServicesGrid: React.FC = () => {
+interface ServicesGridProps {
+  category: 'personal' | 'guild';
+}
+
+const ServicesGrid: React.FC<ServicesGridProps> = ({ category }) => {
   const [selectedService, setSelectedService] = useState<ServiceCardType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(0);
@@ -35,14 +39,16 @@ const ServicesGrid: React.FC = () => {
     }
   };
 
+  const currentServices = category === 'personal' ? personalServices : guildServices;
+
   React.useEffect(() => {
     // Preload images
-    services.forEach(service => {
+    currentServices.forEach(service => {
       const img = new Image();
       img.src = service.image;
       img.onload = handleImageLoaded;
     });
-  }, []);
+  }, [category, currentServices]);
 
   return (
     <>
@@ -52,7 +58,7 @@ const ServicesGrid: React.FC = () => {
         initial="hidden"
         animate="show"
       >
-        {services.map((service) => (
+        {currentServices.map((service) => (
           <ServiceCard
             key={service.id}
             service={service}

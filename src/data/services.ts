@@ -1,8 +1,11 @@
 
 import { ServiceCard } from "@/types";
 import { FormField } from "@/types";
+import guildVisitImage from "@/assets/anime-guild-visit.jpg";
 
-export const services: ServiceCard[] = [
+export const personalServices: ServiceCard[] = [
+
+
   {
     id: 1,
     name: "تغيير لقب",
@@ -95,6 +98,18 @@ export const services: ServiceCard[] = [
     image: "https://cdn.lovable.dev/anime/anime-bleach.jpg"
   }
 ];
+
+export const guildServices: ServiceCard[] = [
+  {
+    id: 100,
+    name: "شراء زيارة",
+    price: "300k",
+    duration: "زيارة واحدة",
+    image: guildVisitImage
+  }
+];
+
+export const services: ServiceCard[] = [...personalServices, ...guildServices];
 
 export const serviceFormFields: Record<number, FormField[]> = {
   1: [
@@ -200,6 +215,14 @@ export const serviceFormFields: Record<number, FormField[]> = {
     {
       id: "warningReason",
       label: "عدد الانذارات ",
+      type: "text",
+      required: true
+    }
+  ],
+  100: [
+    {
+      id: "targetGuild",
+      label: "اي نقابة بدك تروح",
       type: "text",
       required: true
     }
