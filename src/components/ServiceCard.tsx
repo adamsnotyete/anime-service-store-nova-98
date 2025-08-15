@@ -23,7 +23,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, onClick }) => {
         transition: { duration: 0.2 }
       }}
     >
-      <AspectRatio ratio={3/4} className="h-80">
+      <AspectRatio ratio={3/4} className="h-64">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
         <img
           src={service.image}
