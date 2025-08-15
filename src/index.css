@@ -121,7 +121,7 @@
 
   /* تعديل: مسافة بين البطاقات في الحاوية */
   .cards-container {
-    @apply grid gap-6;
+    @apply grid gap-2;
   }
 }
 
