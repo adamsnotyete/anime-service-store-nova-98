@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          balance: number
+          created_at: string
+          guild: string
+          id: string
+          is_admin: boolean
+          updated_at: string
+          user_id: string
+          username: string
+        }
+        Insert: {
+          balance?: number
+          created_at?: string
+          guild: string
+          id?: string
+          is_admin?: boolean
+          updated_at?: string
+          user_id: string
+          username: string
+        }
+        Update: {
+          balance?: number
+          created_at?: string
+          guild?: string
+          id?: string
+          is_admin?: boolean
+          updated_at?: string
+          user_id?: string
+          username?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

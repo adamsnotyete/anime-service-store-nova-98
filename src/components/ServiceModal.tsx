@@ -18,7 +18,7 @@ interface ServiceModalProps {
 }
 
 const ServiceModal: React.FC<ServiceModalProps> = ({ service, isOpen, onClose }) => {
-  const { userData } = useAuth();
+  const { userProfile } = useAuth();
   const { toast } = useToast();
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,7 +28,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ service, isOpen, onClose })
   };
 
   const handleSubmit = async () => {
-    if (!service || !userData) return;
+    if (!service || !userProfile) return;
     
     setIsSubmitting(true);
     
@@ -38,7 +38,11 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ service, isOpen, onClose })
         serviceName: service.name,
         servicePrice: service.price,
         serviceDuration: service.duration,
-        userData,
+        userData: {
+          username: userProfile.username,
+          userId: userProfile.user_id,
+          guild: userProfile.guild
+        },
         additionalData: formValues
       });
       

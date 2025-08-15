@@ -9,7 +9,7 @@ import AnimatedBanner from "@/components/AnimatedBanner";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
-  const { isLoggedIn } = useAuth();
+  const { user, loading } = useAuth();
   const [showBanner, setShowBanner] = useState(true);
   const [activeCategory, setActiveCategory] = useState<'personal' | 'guild'>('personal');
 
@@ -24,17 +24,25 @@ const Index = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white text-xl">جاري التحميل...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen relative z-10 flex flex-col" dir="rtl">
       <AnimatedBackground />
       
-      {isLoggedIn && showBanner && <AnimatedBanner />}
+      {user && showBanner && <AnimatedBanner />}
       
       <div className="container mx-auto px-4 py-8 relative z-10 flex-grow">
         <Header />
         
         <main className="max-w-7xl mx-auto">
-          {isLoggedIn ? (
+          {user ? (
             <>
               <div className="mb-10">
                 <h2 className="text-4xl font-bold mb-2 gradient-text">مرحبًا بك في متجر 𝑲𝑶𝑹𝑨𝒀 🌑</h2>
