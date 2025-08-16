@@ -17,13 +17,23 @@ const Header: React.FC = () => {
               <p className="text-sm text-muted-foreground">{userProfile.guild}</p>
               <p className="text-sm text-yellow-400">الرصيد: {userProfile.balance} ريال</p>
             </div>
-            <Button 
-              variant="outline" 
-              onClick={signOut}
-              className="border border-purple-500 hover:bg-purple-900 hover:bg-opacity-30"
-            >
-              تسجيل الخروج
-            </Button>
+            <div className="flex items-center gap-2">
+              {userProfile?.is_admin && (
+                <Button 
+                  onClick={() => window.location.href = '/admin'}
+                  className="btn-gradient text-sm"
+                >
+                  لوحة الإدارة
+                </Button>
+              )}
+              <Button 
+                variant="outline" 
+                onClick={signOut}
+                className="border border-purple-500 hover:bg-purple-900 hover:bg-opacity-30"
+              >
+                تسجيل الخروج
+              </Button>
+            </div>
           </div>
         ) : null}
       </div>

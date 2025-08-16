@@ -16,8 +16,9 @@ interface AuthContextType {
   session: Session | null;
   userProfile: UserProfile | null;
   loading: boolean;
-  signUp: (email: string, password: string, username: string, guild: string) => Promise<{ error: any }>;
-  signIn: (email: string, password: string) => Promise<{ error: any }>;
+  signUp: (phoneNumber: string, password: string, username: string, guild: string) => Promise<{ error: any }>;
+  signIn: (phoneNumber: string, password: string) => Promise<{ error: any }>;
+  createUserAccount: (phoneNumber: string, password: string, username: string, guild: string, balance?: number) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
 }
 
@@ -82,31 +83,66 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string, username: string, guild: string) => {
-    const redirectUrl = `${window.location.origin}/`;
-    
-    const { error } = await supabase.auth.signUp({
-      email,
+  const signUp = async (phoneNumber: string, password: string, username: string, guild: string) => {
+    // منع المستخدمين العاديين من التسجيل
+    return { error: { message: "التسجيل متاح للمشرفين فقط" } };
+  };
+
+  const signIn = async (phoneNumber: string, password: string) => {
+    // البحث عن المستخدم بالرقم أولاً
+    const { data: profileData, error: profileError } = await supabase
+      .from('profiles')
+      .select('user_id')
+      .eq('phone_number', phoneNumber)
+      .single();
+
+    if (profileError || !profileData) {
+      return { error: { message: "رقم المستخدم غير موجود" } };
+    }
+
+    // محاولة تسجيل الدخول باستخدام رقم كـ email مؤقت
+    const tempEmail = `${phoneNumber}@temp.local`;
+    const { error } = await supabase.auth.signInWithPassword({
+      email: tempEmail,
       password,
-      options: {
-        emailRedirectTo: redirectUrl,
-        data: {
-          username,
-          guild
-        }
-      }
     });
     
     return { error };
   };
 
-  const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
+  const createUserAccount = async (phoneNumber: string, password: string, username: string, guild: string, balance: number = 0) => {
+    // التحقق من أن المستخدم الحالي مشرف
+    if (!userProfile?.is_admin) {
+      return { error: { message: "غير مسموح - مشرفين فقط" } };
+    }
+
+    // إنشاء حساب مؤقت باستخدام رقم كـ email
+    const tempEmail = `${phoneNumber}@temp.local`;
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+      email: tempEmail,
       password,
+      options: {
+        data: {
+          username,
+          guild,
+          phone_number: phoneNumber
+        }
+      }
     });
-    
-    return { error };
+
+    if (authError) {
+      return { error: authError };
+    }
+
+    // تحديث الرصيد إذا تم تحديده
+    if (balance > 0 && authData.user) {
+      await supabase
+        .from('profiles')
+        .update({ balance })
+        .eq('user_id', authData.user.id);
+    }
+
+    return { error: null };
   };
 
   const signOut = async () => {
@@ -121,7 +157,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       loading, 
       signUp, 
       signIn, 
-      signOut 
+      signOut,
+      createUserAccount
     }}>
       {children}
     </AuthContext.Provider>

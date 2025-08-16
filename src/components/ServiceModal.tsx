@@ -7,9 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ServiceCard, FormField } from "@/types";
 import { serviceFormFields } from "@/data/services";
-import { sendServiceRequest } from "@/services/emailService";
 import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ServiceModalProps {
   service: ServiceCard | null;
@@ -30,32 +30,49 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ service, isOpen, onClose })
   const handleSubmit = async () => {
     if (!service || !userProfile) return;
     
+    // تحويل السعر إلى رقم للمقارنة
+    const priceValue = parseFloat(service.price.replace(/[km]/gi, '').replace(/,/g, '')) * 
+      (service.price.toLowerCase().includes('m') ? 1000000 : 
+       service.price.toLowerCase().includes('k') ? 1000 : 1);
+
+    // التحقق من الرصيد
+    if (userProfile.balance < priceValue) {
+      toast({
+        title: "رصيد غير كافي",
+        description: `رصيدك الحالي: ${userProfile.balance.toLocaleString()}. مطلوب: ${priceValue.toLocaleString()}`,
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
-      const response = await sendServiceRequest({
-        serviceId: service.id,
-        serviceName: service.name,
-        servicePrice: service.price,
-        serviceDuration: service.duration,
-        userData: {
-          username: userProfile.username,
-          userId: userProfile.user_id,
-          guild: userProfile.guild
-        },
-        additionalData: formValues
-      });
-      
-      if (response.success) {
-        toast({
-          title: "تم إرسال الطلب بنجاح",
-          description: "سيتم التواصل معك قريبًا",
-          duration: 5000,
-        });
-        onClose();
-      } else {
-        throw new Error("Failed to send request");
+      // إدراج الطلب في قاعدة البيانات
+      const { error } = await supabase
+        .from('service_requests')
+        .insert([
+          {
+            user_id: userProfile.user_id,
+            service_id: service.id,
+            service_name: service.name,
+            service_price: service.price,
+            form_data: formValues,
+            status: 'pending'
+          }
+        ]);
+
+      if (error) {
+        throw error;
       }
+      
+      toast({
+        title: "تم إرسال الطلب بنجاح",
+        description: "سيتم مراجعة طلبك والرد عليك قريباً",
+        duration: 5000,
+      });
+      onClose();
+      setFormValues({});
     } catch (error) {
       toast({
         title: "فشل في إرسال الطلب",

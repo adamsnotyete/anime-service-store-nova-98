@@ -21,6 +21,7 @@ export type Database = {
           guild: string
           id: string
           is_admin: boolean
+          phone_number: string | null
           updated_at: string
           user_id: string
           username: string
@@ -31,6 +32,7 @@ export type Database = {
           guild: string
           id?: string
           is_admin?: boolean
+          phone_number?: string | null
           updated_at?: string
           user_id: string
           username: string
@@ -41,18 +43,70 @@ export type Database = {
           guild?: string
           id?: string
           is_admin?: boolean
+          phone_number?: string | null
           updated_at?: string
           user_id?: string
           username?: string
         }
         Relationships: []
       }
+      service_requests: {
+        Row: {
+          created_at: string
+          form_data: Json | null
+          id: string
+          service_id: number
+          service_name: string
+          service_price: string
+          status: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          form_data?: Json | null
+          id?: string
+          service_id: number
+          service_name: string
+          service_price: string
+          status?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          form_data?: Json | null
+          id?: string
+          service_id?: number
+          service_name?: string
+          service_price?: string
+          status?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_requests_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      add_balance: {
+        Args: { amount_param: number; user_id_param: string }
+        Returns: boolean
+      }
+      deduct_balance: {
+        Args: { amount_param: number; user_id_param: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
