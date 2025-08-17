@@ -116,33 +116,43 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       return { error: { message: "غير مسموح - مشرفين فقط" } };
     }
 
-    // إنشاء حساب مؤقت باستخدام رقم كـ email
-    const tempEmail = `${phoneNumber}@temp.local`;
-    const { data: authData, error: authError } = await supabase.auth.signUp({
-      email: tempEmail,
-      password,
-      options: {
-        data: {
-          username,
-          guild,
-          phone_number: phoneNumber
+    try {
+      // إنشاء حساب باستخدام رقم كـ email مؤقت
+      const tempEmail = `${phoneNumber}@temp.local`;
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: tempEmail,
+        password,
+        options: {
+          emailRedirectTo: undefined, // منع إرسال ايميل التحقق
+          data: {
+            username,
+            guild,
+            phone_number: phoneNumber
+          }
+        }
+      });
+
+      if (authError) {
+        return { error: authError };
+      }
+
+      // انتظار إنشاء الملف الشخصي ثم تحديث الرصيد
+      if (authData.user) {
+        // انتظار قصير للتأكد من إنشاء الملف الشخصي
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        if (balance > 0) {
+          await supabase
+            .from('profiles')
+            .update({ balance })
+            .eq('user_id', authData.user.id);
         }
       }
-    });
 
-    if (authError) {
-      return { error: authError };
+      return { error: null };
+    } catch (error: any) {
+      return { error: { message: error.message || "حدث خطأ أثناء إنشاء الحساب" } };
     }
-
-    // تحديث الرصيد إذا تم تحديده
-    if (balance > 0 && authData.user) {
-      await supabase
-        .from('profiles')
-        .update({ balance })
-        .eq('user_id', authData.user.id);
-    }
-
-    return { error: null };
   };
 
   const signOut = async () => {

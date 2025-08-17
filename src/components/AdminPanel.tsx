@@ -140,6 +140,15 @@ const AdminPanel = () => {
   };
 
   const handleUpdateBalance = async (userId: string, newBalance: number) => {
+    if (newBalance < 0) {
+      toast({
+        title: "خطأ",
+        description: "الرصيد لا يمكن أن يكون سالباً",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('profiles')
@@ -150,7 +159,7 @@ const AdminPanel = () => {
 
       toast({
         title: "تم تحديث الرصيد",
-        description: "تم تحديث رصيد المستخدم بنجاح",
+        description: `تم تعديل الرصيد إلى ${newBalance.toLocaleString()}`,
       });
 
       fetchUsers();
@@ -161,6 +170,14 @@ const AdminPanel = () => {
         variant: "destructive",
       });
     }
+  };
+
+  const handleAddBalance = async (userId: string, addAmount: number) => {
+    const user = users.find(u => u.user_id === userId);
+    if (!user) return;
+
+    const newBalance = user.balance + addAmount;
+    await handleUpdateBalance(userId, newBalance);
   };
 
   const handleDeleteUser = async (userId: string) => {
@@ -327,10 +344,26 @@ const AdminPanel = () => {
                         <div>
                           <p>الرصيد: {user.balance.toLocaleString()}</p>
                         </div>
-                        <div>
+                        <div className="space-y-2">
+                          <div className="flex gap-2">
+                            <Input
+                              type="number"
+                              placeholder="إضافة مبلغ"
+                              className="bg-opacity-20 bg-black flex-1"
+                              onChange={(e) => setBalanceUpdate({userId: user.user_id, amount: parseInt(e.target.value) || 0})}
+                            />
+                            <Button
+                              size="sm"
+                              onClick={() => handleAddBalance(user.user_id, balanceUpdate.amount)}
+                              className="btn-gradient"
+                              title="إضافة رصيد"
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
+                          </div>
                           <Input
                             type="number"
-                            placeholder="رصيد جديد"
+                            placeholder="تعديل الرصيد الكامل"
                             className="bg-opacity-20 bg-black"
                             onChange={(e) => setBalanceUpdate({userId: user.user_id, amount: parseInt(e.target.value) || 0})}
                           />
@@ -340,6 +373,7 @@ const AdminPanel = () => {
                             size="sm"
                             onClick={() => handleUpdateBalance(user.user_id, balanceUpdate.amount)}
                             className="btn-gradient"
+                            title="تعديل الرصيد الكامل"
                           >
                             <Edit className="h-4 w-4" />
                           </Button>
