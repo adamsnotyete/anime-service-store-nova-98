@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import ServicesGrid from "@/components/ServicesGrid";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import AnimatedBanner from "@/components/AnimatedBanner";
+import AdminAccessButton from "@/components/AdminAccessButton";
 import { Button } from "@/components/ui/button";
 
 const Index = () => {
@@ -85,6 +86,8 @@ const Index = () => {
           <p>&copy; 2025 متجر 𝑲𝑶𝑹𝑨𝒀 🌑 - جميع الحقوق محفوظة</p>
         </div>
       </footer>
+      
+      <AdminAccessButton />
     </div>
   );
 };
